@@ -30,7 +30,6 @@
 #include "rpcconsole.h"
 #include "wallet.h"
 #include "consolepage.h"
-#include "qwirepage.h"
 #include "quantpage.h"
 #include "profitexplorerpage.h"
 #include "tabbedconsolepage.h"
@@ -197,9 +196,6 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     signVerifyMessageDialog = new SignVerifyMessageDialog(this);
 
     consolePage = new TabbedConsolePage(this);
-    qwirePage = new QWirePage(this);
-    qwirePage->setObjectName("qwirePage");
-    qwirePage->setStyleSheet("#qwirePage { background-color: #000000; }");
 
     quantPage = new QuantPage(this);
     profitExplorerPage = new ProfitExplorerPage(this);
@@ -215,7 +211,6 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     centralWidget->addWidget(sendCoinsPage);
     centralWidget->addWidget(messagePage);
     centralWidget->addWidget(consolePage);
-    centralWidget->addWidget(qwirePage);
     centralWidget->addWidget(quantPage);
     centralWidget->addWidget(profitExplorerPage);
     setCentralWidget(centralWidget);
@@ -388,12 +383,6 @@ void BitcoinGUI::createActions()
     consolePageAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
     tabGroup->addAction(consolePageAction);
 
-    qwirePageAction = new QAction(QIcon(":/icons/qwire"), tr("&QWire"), this);
-    qwirePageAction->setToolTip(tr("QWire crypto newswire"));
-    qwirePageAction->setCheckable(true);
-    qwirePageAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_8));
-    tabGroup->addAction(qwirePageAction);
-
     quantPageAction = new QAction(QIcon(":/icons/quant"), tr("Q&uant"), this);
     quantPageAction->setToolTip(tr("Quant - Aggregated realtime XQN market data"));
     quantPageAction->setCheckable(true);
@@ -419,8 +408,6 @@ void BitcoinGUI::createActions()
     connect(messageAction, SIGNAL(triggered()), this, SLOT(gotoMessagePage()));
     connect(consolePageAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(consolePageAction, SIGNAL(triggered()), this, SLOT(gotoConsolePage()));
-    connect(qwirePageAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(qwirePageAction, SIGNAL(triggered()), this, SLOT(gotoQWirePage()));
     connect(quantPageAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(quantPageAction, SIGNAL(triggered()), this, SLOT(gotoQuantPage()));
     connect(profitExplorerPageAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -537,7 +524,6 @@ void BitcoinGUI::createToolBars()
     mainToolbar->addAction(addressBookAction);
     mainToolbar->addAction(quantPageAction);
     mainToolbar->addAction(profitExplorerPageAction);
-    mainToolbar->addAction(qwirePageAction);
     mainToolbar->addAction(consolePageAction);
     mainToolbar->addAction(messageAction);
     mainToolbar->addAction(exportAction);
@@ -1017,16 +1003,6 @@ void BitcoinGUI::gotoConsolePage()
     consolePageAction->setChecked(true);
     centralWidget->setCurrentWidget(consolePage);
     //consolePage->entryFocus();
-
-    exportAction->setEnabled(false);
-    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
-}
-
-void BitcoinGUI::gotoQWirePage()
-{
-    qwirePageAction->setChecked(true);
-    qwirePage->loadFeed();
-    centralWidget->setCurrentWidget(qwirePage);
 
     exportAction->setEnabled(false);
     disconnect(exportAction, SIGNAL(triggered()), 0, 0);

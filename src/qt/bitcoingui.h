@@ -20,7 +20,6 @@ class SignVerifyMessageDialog;
 class Notificator;
 class RPCConsole;
 class ConsolePage;
-class QWirePage;
 class QuantPage;
 class ProfitExplorerPage;
 class TabbedConsolePage;
@@ -98,7 +97,6 @@ private:
     SendCoinsDialog *sendCoinsPage;
     SignVerifyMessageDialog *signVerifyMessageDialog;
     TabbedConsolePage *consolePage;
-    QWirePage *qwirePage;
     QuantPage *quantPage;
     ProfitExplorerPage *profitExplorerPage;
 
@@ -134,7 +132,6 @@ private:
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
     QAction *consolePageAction;
-    QAction *qwirePageAction;
     QAction *quantPageAction;
     QAction *profitExplorerPageAction;
 
@@ -198,8 +195,6 @@ private slots:
     void gotoMessagePage();
     /** Switch to the console page */
     void gotoConsolePage();
-    /** Switch to the QWire page */
-    void gotoQWirePage();
     /** Switch to the Quant page */
     void gotoQuantPage();
     /** Switch to the ProfitExplorer page */
