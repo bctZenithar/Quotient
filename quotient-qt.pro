@@ -255,6 +255,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/quantpage.h \
     src/qt/profitexplorerpage.h \
     src/qt/tabbedconsolepage.h \
+	src/qt/charitydialog.h \
     src/qdex.h \
     src/qt/flowlayout.h
 
@@ -341,6 +342,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/quantpage.cpp \
     src/qt/profitexplorerpage.cpp \
     src/qt/tabbedconsolepage.cpp \
+	src/qt/charitydialog.cpp \
     src/qdex.cpp \
     src/qt/flowlayout.cpp
 
@@ -368,6 +370,7 @@ FORMS += \
     src/qt/forms/consolepage.ui \
     src/qt/forms/quantpage.ui \
     src/qt/forms/profitexplorerpage.ui \
+	src/qt/forms/charitydialog.ui \
     src/qt/forms/tabbedconsolepage.ui
 
 contains(USE_QRCODE, 1) {

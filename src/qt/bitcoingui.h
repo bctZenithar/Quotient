@@ -23,6 +23,7 @@ class ConsolePage;
 class QuantPage;
 class ProfitExplorerPage;
 class TabbedConsolePage;
+class StakeForCharityDialog;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -99,6 +100,7 @@ private:
     TabbedConsolePage *consolePage;
     QuantPage *quantPage;
     ProfitExplorerPage *profitExplorerPage;
+	StakeForCharityDialog *stakeForCharityDialog;
 
     ActiveLabel *labelEncryptionIcon;
     QLabel *labelStakingIcon;
@@ -134,6 +136,7 @@ private:
     QAction *consolePageAction;
     QAction *quantPageAction;
     QAction *profitExplorerPageAction;
+	QAction *charityAction;
 
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
@@ -143,6 +146,8 @@ private:
     QMovie *syncIconMovie;
 
     uint64_t nWeight;
+	bool fMultiSend;
+	bool fMultiSendNotify;
 
     /** Create the main UI actions. */
     void createActions();
@@ -243,6 +248,7 @@ private slots:
 
     void updateWeight();
     void updateStakingIcon();
+	void charityClicked();
 
     void on_opacitySpinBox_valueChanged(int i);
 };

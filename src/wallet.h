@@ -138,12 +138,27 @@ public:
     unsigned int nMasterKeyMaxID;
     bool fSplitBlock;
 	uint64_t nStakeSplitThreshold;
+	
+	//MultiSend
+	std::vector<std::pair<std::string, int> > vMultiSend;
+	bool fMultiSend;
+	bool fMultiSendNotify;
+	std::string strMultiSendChangeAddress;
+	int nLastMultiSendHeight;
+	std::vector<std::string> vDisabledAddresses;
 
     CWallet()
     {
         SetNull();
 		nStakeSplitThreshold = 250;
 		fSplitBlock = false;
+		//MultiSend
+		vMultiSend.clear();
+		fMultiSend = false;
+		fMultiSendNotify = false;
+		strMultiSendChangeAddress = "";
+		nLastMultiSendHeight = 0;
+		vDisabledAddresses.clear();
     }
     CWallet(std::string strWalletFileIn)
     {
@@ -152,6 +167,13 @@ public:
         fFileBacked = true;
 		nStakeSplitThreshold = 250;
 		fSplitBlock = false;
+		//MultiSend
+		vMultiSend.clear();
+		fMultiSend = false;
+		fMultiSendNotify = false;
+		strMultiSendChangeAddress = "";
+		nLastMultiSendHeight = 0;
+		vDisabledAddresses.clear();
     }
     void SetNull()
     {
@@ -237,6 +259,7 @@ public:
     bool CreateTransaction(const std::vector<std::pair<CScript, int64_t> >& vecSend, CWalletTx& wtxNew, CReserveKey& reservekey, int64_t& nFeeRet, int32_t& nChangePos, int nSplitBlock, const CCoinControl *coinControl=NULL);
     bool CreateTransaction(CScript scriptPubKey, int64_t nValue, std::string& sNarr, CWalletTx& wtxNew, CReserveKey& reservekey, int64_t& nFeeRet, const CCoinControl *coinControl=NULL);
     bool CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey);
+	bool MultiSend();
     
     
     
