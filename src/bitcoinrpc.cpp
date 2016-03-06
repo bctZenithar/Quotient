@@ -311,9 +311,7 @@ static const CRPCCommand vRPCCommands[] =
  	{ "getstakesplitthreshold",  &getstakesplitthreshold,  false,  false},
 	{ "multisend",        &multisend,        false,  false },
 
-    { "sendnewsfeed",           &sendnewsfeed,           false,  false},
-    { "sendindexfeed",          &sendindexfeed,          false,  false},
-    
+
     { "getnewstealthaddress",   &getnewstealthaddress,   false,  false},
     { "liststealthaddresses",   &liststealthaddresses,   false,  false},
     { "importstealthaddress",   &importstealthaddress,   false,  false},

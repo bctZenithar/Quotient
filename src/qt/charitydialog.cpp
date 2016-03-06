@@ -59,9 +59,9 @@ void StakeForCharityDialog::on_viewButton_clicked()
 	std::pair<std::string, int> pMultiSend;
 	std::string strMultiSendPrint = "";
 	if(pwalletMain->fMultiSend)
-		strMultiSendPrint += "MultiSend Active\n";
+		strMultiSendPrint += "MultiSend Enabled\n";
 	else
-		strMultiSendPrint += "MultiSend Not Active\n";
+		strMultiSendPrint += "MultiSend Disabled\n";
 	
 	for(int i = 0; i < (int)pwalletMain->vMultiSend.size(); i++)
 	{
@@ -177,9 +177,9 @@ void StakeForCharityDialog::on_activateButton_clicked()
 		pwalletMain->fMultiSend = true;
 		CWalletDB walletdb(pwalletMain->strWalletFile);
 		if(!walletdb.WriteMSettings(true, pwalletMain->nLastMultiSendHeight))
-			strRet = "MultiSend activated but writing settings to DB failed";
+			strRet = "MultiSend enabled but writing settings to DB failed";
 		else
-			strRet = "MultiSend activated";
+			strRet = "MultiSend enabled";
 	}
 	else
 		strRet = "First Address Not Valid";
@@ -196,9 +196,9 @@ void StakeForCharityDialog::on_disableButton_clicked()
 	pwalletMain->fMultiSend = false;
 	CWalletDB walletdb(pwalletMain->strWalletFile);
 	if(!walletdb.WriteMSettings(false, pwalletMain->nLastMultiSendHeight))
-		strRet = "MultiSend deactivated but writing settings to DB failed";
+		strRet = "MultiSend disabled but writing settings to DB failed";
 	else
-		strRet = "MultiSend deactivated";
+		strRet = "MultiSend disabled";
 	
     ui->message->setProperty("status", "");
     ui->message->style()->polish(ui->message);

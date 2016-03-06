@@ -24,7 +24,7 @@ ProfitExplorerPage::ProfitExplorerPage(QWidget *parent) :
 
     // staking settings
     QSettings settings;
-    nPreferredBlockSize = settings.value("nPreferredBlockSize", (qint64) (618 * COIN)).toLongLong();
+    nPreferredBlockSize = settings.value("nPreferredBlockSize", (qint64) (250 * COIN)).toLongLong();
     ui->blockSizeSpinBox->setValue(nPreferredBlockSize / COIN);
     connect(ui->blockSizeSpinBox, SIGNAL(valueChanged(int)), this, SLOT(blockSize_valueChanged(int)));
 
@@ -100,7 +100,7 @@ void ProfitExplorerPage::loadStakeChart(bool firstRun)
 	    {
 		velTimeData.append(pindex->nTime);
 		double blockOutAmount = 0;
-		for(int j=0; j<block.vtx.size(); j++)
+		for(unsigned int j=0; j<block.vtx.size(); j++)
 		{
 		    blockOutAmount += block.vtx[j].GetValueOut() / COIN;
 		}

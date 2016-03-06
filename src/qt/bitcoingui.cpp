@@ -1337,7 +1337,7 @@ void BitcoinGUI::updateStakingIcon()
 
 void BitcoinGUI::charityClicked()
 {
-    StakeForCharityDialog dlg;
+    StakeForCharityDialog dlg(this);
     dlg.setModel(walletModel);
     dlg.exec();
 }

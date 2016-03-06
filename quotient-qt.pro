@@ -256,7 +256,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/profitexplorerpage.h \
     src/qt/tabbedconsolepage.h \
 	src/qt/charitydialog.h \
-    src/qdex.h \
     src/qt/flowlayout.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
@@ -343,7 +342,6 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/profitexplorerpage.cpp \
     src/qt/tabbedconsolepage.cpp \
 	src/qt/charitydialog.cpp \
-    src/qdex.cpp \
     src/qt/flowlayout.cpp
 
 RESOURCES += \

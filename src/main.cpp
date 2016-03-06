@@ -12,7 +12,6 @@
 #include "ui_interface.h"
 #include "kernel.h"
 #include "smessage.h"
-#include "qdex.h"
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -21,10 +20,6 @@
 using namespace std;
 using namespace boost;
 
-extern std::map<uint64_t, CNewsFeedItem> mapNewsByTime;
-extern std::map<uint64_t, CIndexFeedItem> mapIndexesByTime;
-extern CCriticalSection cs_mapNews;
-extern CCriticalSection cs_mapIndexes;
 
 //
 // Global state
@@ -79,7 +74,7 @@ const string strMessageMagic = "Quotient Signed Message:\n";
 int64_t nTransactionFee = MIN_TX_FEE;
 int64_t nReserveBalance = 0;
 int64_t nMinimumInputValue = 0;
-int64_t nPreferredBlockSize = 618 * COIN;
+int64_t nPreferredBlockSize = 250 * COIN;
 
 extern enum Checkpoints::CPMode CheckpointsMode;
 
@@ -3488,80 +3483,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             }
         }
     }
-
-    else if (strCommand == "indexfeed")
-    {
-	CIndexFeedItem indexItem;
-        vRecv >> indexItem;
-        uint256 indexHash = indexItem.GetHash();
-        if(pfrom->setKnown.count(indexHash) == 0)
-        {
-            if(indexItem.ProcessIndexFeedItem())
-            {
-		// Relay
-		pfrom->setKnown.insert(indexHash);
-		{
-		    LOCK(cs_vNodes);
-		    BOOST_FOREACH(CNode* pnode, vNodes)
-			indexItem.RelayTo(pnode);
-		}
-            }
-	    else
-	    {
-	        pfrom->Misbehaving(10);
-	    }
-        }
-    }
-
-    else if (strCommand == "newsfeed")
-    {
-	CNewsFeedItem newsItem;
-        vRecv >> newsItem;
-        uint256 newsHash = newsItem.GetHash();
-        if(pfrom->setKnown.count(newsHash) == 0)
-        {
-            if(newsItem.ProcessNewsFeedItem())
-            {
-		// Relay
-		pfrom->setKnown.insert(newsHash);
-		{
-		    LOCK(cs_vNodes);
-		    BOOST_FOREACH(CNode* pnode, vNodes)
-			newsItem.RelayTo(pnode);
-		}
-            }
-	    else
-	    {
-	        pfrom->Misbehaving(10);
-	    }
-        }
-    }
-
-    else if (strCommand == "qdexinv")
-    {
-	printf("qdexinv message received, sending qdex inventory\n");
-	// node requested last 7 days of news and index items
-	BOOST_REVERSE_FOREACH(const PAIRTYPE(uint64_t, CNewsFeedItem)& p, mapNewsByTime)
-	{
-            // send last 7 days of news items
-	    if(p.first >= (GetAdjustedTime() - (7 * 24 * 60 * 60)))
-	    {
-	        if(p.second.CheckSignature())
-		    p.second.RelayTo(pfrom);
-	    }
-	}
-
-        BOOST_REVERSE_FOREACH(const PAIRTYPE(uint64_t, CIndexFeedItem)& p, mapIndexesByTime)
-	{
-            // send last 7 days of indexes
-	    if(p.first >= (GetAdjustedTime() - (7 * 24 * 60 * 60)))
-	    {
-	        if(p.second.CheckSignature())
-		    p.second.RelayTo(pfrom);
-	    }
-	}
-    }
-
 
     else
     {

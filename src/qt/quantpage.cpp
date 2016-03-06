@@ -318,12 +318,12 @@ void QuantPage::updateOrderBook()
 
     int rowHeight = 12;
     ui->askTableWidget->verticalHeader()->setUpdatesEnabled(false); 
-    for (unsigned int i = 0; i < ui->askTableWidget->rowCount(); i++)
+    for (int i = 0; i < ui->askTableWidget->rowCount(); i++)
         ui->askTableWidget->verticalHeader()->resizeSection(i, rowHeight);
     ui->askTableWidget->verticalHeader()->setUpdatesEnabled(true);
 
     ui->bidTableWidget->verticalHeader()->setUpdatesEnabled(false); 
-    for (unsigned int i = 0; i < ui->bidTableWidget->rowCount(); i++)
+    for (int i = 0; i < ui->bidTableWidget->rowCount(); i++)
         ui->bidTableWidget->verticalHeader()->resizeSection(i, rowHeight);
     ui->bidTableWidget->verticalHeader()->setUpdatesEnabled(true);
 
@@ -417,7 +417,7 @@ void QuantPage::trexMktDataReplyFinished()
         qsreal last = entry.property("Last").toNumber(); 
         if(last > 0)
         {
-            qsreal prevday = entry.property("PrevDay").toNumber();
+            //qsreal prevday = entry.property("PrevDay").toNumber();
             if(last < trexLastPrice)
             {
 	        // red

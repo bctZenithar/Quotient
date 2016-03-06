@@ -9,9 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>652</width>
+    <width>555</width>
     <height>300</height>
    </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#StakeForCharityDialog { background-color: #969696; color: #ffffff;}</string>
   </property>
   <property name="windowTitle">
    <string>MultiSend</string>
@@ -19,9 +22,9 @@
   <widget class="QLineEdit" name="charityPercentEdit">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>120</y>
-     <width>131</width>
+     <x>160</x>
+     <y>135</y>
+     <width>90</width>
      <height>20</height>
     </rect>
    </property>
@@ -29,15 +32,15 @@
     <string>Enter whole numbers 1 - 100</string>
    </property>
    <property name="placeholderText">
-    <string>Enter % to Give (1-100)</string>
+    <string>% to Give</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="charityAddressEdit">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>150</y>
-     <width>401</width>
+     <x>160</x>
+     <y>105</y>
+     <width>340</width>
      <height>21</height>
     </rect>
    </property>
@@ -45,26 +48,23 @@
     <string/>
    </property>
    <property name="placeholderText">
-    <string>Enter Address to Send to</string>
+    <string>Address to Send to</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>0</y>
-     <width>451</width>
-     <height>121</height>
+     <x>25</x>
+     <y>12</y>
+     <width>500</width>
+     <height>36</height>
     </rect>
    </property>
    <property name="lineWidth">
     <number>1</number>
    </property>
    <property name="text">
-    <string>MultiSend allows you to automatically send up to 100% of your stake to a list of other Quotient address after it matures.
-To Add: enter percentage to give and Quotient address to add to the MultiSend vector. 
-To Delete: Enter address to delete and press delete.
-MultiSend will not be activated unless you have clicked Activate</string>
+    <string>MultiSend allows you to automatically send up to 100% of your stake to a list of other Quotient address after it matures.</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -73,11 +73,43 @@ MultiSend will not be activated unless you have clicked Activate</string>
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QLabel" name="label_1">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>52</y>
+     <width>500</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="text">
+    <string>• To Add: Enter percentage to give and Quotient address, then press add.</string>
+   </property>
+   </widget>
+<widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>74</y>
+     <width>500</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="text">
+    <string>• To Delete: Enter address to delete and press delete.</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="message">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>200</y>
+     <x>200</x>
+     <y>154</y>
      <width>381</width>
      <height>91</height>
     </rect>
@@ -89,9 +121,9 @@ MultiSend will not be activated unless you have clicked Activate</string>
   <widget class="QPushButton" name="addButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>230</y>
-     <width>91</width>
+     <x>25</x>
+     <y>200</y>
+     <width>72</width>
      <height>23</height>
     </rect>
    </property>
@@ -108,24 +140,24 @@ MultiSend will not be activated unless you have clicked Activate</string>
   <widget class="QPushButton" name="disableButton">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>260</y>
-     <width>91</width>
+     <x>106</x>
+     <y>230</y>
+     <width>72</width>
      <height>23</height>
     </rect>
    </property>
    <property name="statusTip">
-    <string>Deactivate MultiSend</string>
+    <string>Disable MultiSend</string>
    </property>
    <property name="text">
-    <string>Deactivate</string>
+    <string>Disable</string>
    </property>
   </widget>
   <widget class="QPushButton" name="addressBookButton">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>150</y>
+     <x>500</x>
+     <y>105</y>
      <width>28</width>
      <height>21</height>
     </rect>
@@ -150,9 +182,9 @@ MultiSend will not be activated unless you have clicked Activate</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>120</y>
-     <width>121</width>
+     <x>25</x>
+     <y>135</y>
+     <width>100</width>
      <height>20</height>
     </rect>
    </property>
@@ -166,9 +198,9 @@ MultiSend will not be activated unless you have clicked Activate</string>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>150</y>
-     <width>111</width>
+     <x>25</x>
+     <y>105</y>
+     <width>65</width>
      <height>16</height>
     </rect>
    </property>
@@ -182,9 +214,9 @@ MultiSend will not be activated unless you have clicked Activate</string>
   <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>230</y>
-     <width>91</width>
+     <x>106</x>
+     <y>200</y>
+     <width>72</width>
      <height>23</height>
     </rect>
    </property>
@@ -201,24 +233,24 @@ MultiSend will not be activated unless you have clicked Activate</string>
   <widget class="QPushButton" name="activateButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>260</y>
-     <width>91</width>
+     <x>25</x>
+     <y>230</y>
+     <width>72</width>
      <height>23</height>
     </rect>
    </property>
    <property name="statusTip">
-    <string>Activate MultiSend</string>
+    <string>Enable MultiSend</string>
    </property>
    <property name="text">
-    <string>Activate</string>
+    <string>Enable</string>
    </property>
   </widget>
   <widget class="QPushButton" name="viewButton">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>200</y>
+     <x>41</x>
+     <y>170</y>
      <width>121</width>
      <height>23</height>
     </rect>
@@ -231,6 +263,22 @@ MultiSend will not be activated unless you have clicked Activate</string>
    </property>
    <property name="text">
     <string>View MultiSend</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>210</y>
+     <width>470</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="text">
+    <string>*MultiSend will not be activated unless you have clicked Enable</string>
    </property>
   </widget>
  </widget>
