@@ -23,6 +23,7 @@
 
 extern bool fWalletUnlockStakingOnly;
 extern bool fConfChange;
+
 class CAccountingEntry;
 class CWalletTx;
 class CReserveKey;
@@ -132,23 +133,25 @@ public:
     StealthKeyMetaMap mapStealthKeyMeta;
     uint32_t nStealth, nFoundStealth; // for reporting, zero before use
 
-
     typedef std::map<unsigned int, CMasterKey> MasterKeyMap;
     MasterKeyMap mapMasterKeys;
     unsigned int nMasterKeyMaxID;
     bool fSplitBlock;
+	uint64_t nStakeSplitThreshold;
 
     CWallet()
     {
         SetNull();
+		nStakeSplitThreshold = 250;
+		fSplitBlock = false;
     }
     CWallet(std::string strWalletFileIn)
     {
         SetNull();
-
         strWalletFile = strWalletFileIn;
         fFileBacked = true;
-	fSplitBlock =  false;
+		nStakeSplitThreshold = 250;
+		fSplitBlock = false;
     }
     void SetNull()
     {
@@ -159,7 +162,6 @@ public:
         pwalletdbEncryption = NULL;
         nOrderPosNext = 0;
         nTimeFirstKey = 0;
-	fSplitBlock =  false;
     }
 
     std::map<uint256, CWalletTx> mapWallet;
